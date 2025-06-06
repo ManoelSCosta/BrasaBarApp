@@ -1,8 +1,12 @@
 -- database/schema.sql
 
--- Tabela de contas (mesas/entregas)
-CREATE TABLE IF NOT EXISTS bba_conta (
-    id SERIAL PRIMARY KEY,
+CREATE SCHEMA IF NOT EXISTS brasa_bar;
+
+-- Sequence para bba_conta
+CREATE SEQUENCE IF NOT EXISTS brasa_bar.bba_conta_id_seq;
+
+CREATE TABLE IF NOT EXISTS brasa_bar.bba_conta (
+    id INTEGER NOT NULL DEFAULT nextval('brasa_bar.bba_conta_id_seq') PRIMARY KEY,
     cliente VARCHAR(100) NOT NULL,
     tipo VARCHAR(10) NOT NULL CHECK (tipo IN ('salão', 'entrega')),
     aberta BOOLEAN DEFAULT TRUE,
@@ -11,12 +15,17 @@ CREATE TABLE IF NOT EXISTS bba_conta (
     embalagem BOOLEAN DEFAULT FALSE,
     total NUMERIC(10,2) DEFAULT 0.00
 );
+ALTER SEQUENCE brasa_bar.bba_conta_id_seq OWNED BY brasa_bar.bba_conta.id;
 
--- Tabela de categorias de produtos
-CREATE TABLE IF NOT EXISTS bba_categoria (
-    id SERIAL PRIMARY KEY,
+-- Repita o padrão para outras tabelas:
+CREATE SEQUENCE IF NOT EXISTS brasa_bar.bba_categoria_id_seq;
+
+CREATE TABLE IF NOT EXISTS brasa_bar.bba_categoria (
+    id INTEGER NOT NULL DEFAULT nextval('brasa_bar.bba_categoria_id_seq') PRIMARY KEY,
     nome VARCHAR(50) NOT NULL UNIQUE
 );
+ALTER SEQUENCE brasa_bar.bba_categoria_id_seq OWNED BY brasa_bar.bba_categoria.id;
+
 
 -- Tabela de itens do menu
 CREATE TABLE IF NOT EXISTS bba_item (
