@@ -1,5 +1,93 @@
+# Brasa Bar App
 
-# Brasa Bar App — Documento de Especificação Funcional
+## 🚀 Instalação e Configuração Inicial
+
+### ✅ Pré-requisitos
+
+- Python 3.10+
+- PostgreSQL (ex: `brasa_bar_db` já criado)
+- pip (gerenciador de pacotes Python)
+- (Opcional) virtualenv
+
+---
+
+### 📦 1. Clonar o projeto
+
+```bash
+git clone https://github.com/ManoelSCosta/BrasaBarApp.git
+cd BrasaBarApp
+```
+
+---
+
+### 🧪 2. Criar ambiente virtual (opcional, mas recomendado)
+
+```bash
+python -m venv venv
+source venv/bin/activate  # No Windows: venv\Scripts\activate
+```
+
+---
+
+### 📥 3. Instalar dependências
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+### ⚙️ 4. Criar o arquivo `.env`
+
+Crie um arquivo `.env` na raiz do projeto com o seguinte conteúdo:
+
+```env
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=brasa_bar_db
+DB_USER=
+DB_PASSWORD=
+DB_SCHEMA=brasa_bar
+```
+
+---
+
+### 🧱 5. Inicializar o banco
+
+Com o PostgreSQL rodando e o banco `brasa_bar_db` já criado:
+
+```bash
+python app/database/db_connection.py --init
+```
+
+---
+
+### 🧪 6. Testar a conexão
+
+```bash
+python app/database/db_connection.py
+```
+
+---
+
+### ▶️ 7. Executar o sistema
+
+```bash
+python main.py
+```
+
+---
+
+### 📄 Exemplo de `requirements.txt`
+
+```txt
+python-dotenv
+sqlalchemy
+psycopg2-binary
+PySide6
+```
+
+---
 
 ## 🧭 Visões de Uso
 
